@@ -3,9 +3,11 @@ import time
 from money_parser import price_dec
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.keys import Keys
+
+from Alerts import text_alert
 
 PATH = "C:\Program Files (x86)\SeleniumDrivers\chromedriver.exe"    # Make this the path to the driver exe of your choice
 
@@ -99,12 +101,12 @@ while not appropriatePriceFound:
         print("Didn't find price, Item unavailable")
         print("Refreshing")
         driver.refresh()
+        time.sleep(1)
         searchIndex = 0
 
 #
 # Third, try to buy
 #
-
 buttonFound = False
 orderConfirmed = False
 
@@ -146,4 +148,4 @@ while not buttonFound or not orderConfirmed:
 
 print("All done")
 
-
+text_alert(f"Bought a card for ${price}, bot now halting.", "Ten_Digit_Number@txt.att.net")
